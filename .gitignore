@@ -1,8 +1,5 @@
-cal/*
-docs/*
-docs
-cal
-config.php
+/cal
+/config.php
 .phpintel/
-
 /vendor/
+/composer.lock
