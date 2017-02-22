@@ -21,9 +21,9 @@ class Model
      *
      * @param string $configPath Path to config file
      */
-    public function __construct($configPath, $actions, $modes)
+    public function __construct($config, $actions, $modes)
     {
-        include_once($configPath);
+        $this->config = $config;
         $this->actions = $actions;
         $this->modes = $modes;
     }
@@ -31,7 +31,7 @@ class Model
     public function loadCalendarsList()
     {
         $this->calendars = array();
-        $calPath = $this->config['calendars_path'];
+        $calPath = $this->config->calendarsPath;
 
         if ($handle = opendir($calPath)) {
             while (false !== ($entry = readdir($handle))) {

@@ -19,7 +19,10 @@ $loader = require __DIR__ . '/vendor/autoload.php';
 include "./data/actions.php";
 include "./data/modalites.php";
 
-$model = new Model("config.php", $GLOBALS['actions'], $GLOBALS['modalites']);
+$configuration = new PhpConfig('config.php');
+$configuration->read();
+
+$model = new Model($configuration, $GLOBALS['actions'], $GLOBALS['modalites']);
 
 $controller = new Controller($model);
 $controller->run($_POST);
