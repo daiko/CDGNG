@@ -21,6 +21,9 @@ class Controller
         }
 
         $method = 'action' . $post['action'];
+        if (!method_exists($this, $method)) {
+            throw new \Exception("Vous essayez de faire des choses sales...", 1);
+        }
         $this->$method($post);
     }
 
