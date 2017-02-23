@@ -1,6 +1,6 @@
 <?php
 // Tableau modalite cdg
-$GLOBALS['modalites'] = array(
+$data = array(
     "A" => array(
         "Intitulé"  => "Réunions",
         "Description" => ""),
@@ -8,8 +8,8 @@ $GLOBALS['modalites'] = array(
         "Intitulé" => "Déplacement interne SupAgro",
         "Description" => "La Gaillarde, La Fichade, Le Merle, Le Chapitre, IRC..."),
     "C" => array(
-        "Intitulé"      => "Déplacement externe SupAgro",
-        "Description"   => ""),
+        "Intitulé" => "Déplacement externe SupAgro",
+        "Description" => ""),
     "D" => array(
         "Intitulé" => "Messagerie, courrier, administratif",
         "Description" => "Courriel, CDG, papiers"),
@@ -73,4 +73,3 @@ $GLOBALS['modalites'] = array(
         "Intitulé" => "Sans Intitulé",
         "Description" => "Sans objet, pour les persones qui ne souhaitent pas des modalités"),
 );
-

@@ -17,10 +17,15 @@ class Calendar
     public $length = 0;
     public $errors = array();
     public $name = "";
+    protected $actions;
+    protected $modes;
 
-    public function __construct($path)
+
+    public function __construct($path, $actions, $modes)
     {
         $this->path = $path;
+        $this->actions = $actions;
+        $this->modes = $modes;
         $this->name = basename($path, '.ics');
     }
 
@@ -46,7 +51,7 @@ class Calendar
                 and ($event->getEnd() <= $tsEnd)
                 and !$event->isFullDay()) {
 
-                if ($event->isValid($tabEvents, $error)) {
+                if ($event->isValid($tabEvents, $this->actions, $this->modes, $error)) {
                     if ($event->isSelected()) {
                         array_push($tabEvents, $event);
                         $this->addEvent($event);

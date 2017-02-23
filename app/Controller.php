@@ -12,8 +12,6 @@ class Controller
 
     public function run($post)
     {
-        $this->model->loadCalendarsList();
-
         if (!isset($post["action"])) {
             $view = new Views\Main($this->model);
             $view->show();
@@ -53,7 +51,12 @@ class Controller
         $_POST['codes'] = array('Tous');
         $stat = new Statistics\Realised($post["date"]);
         foreach ($post["ics"] as $calName) {
-            $stat->add($this->model->calendars[$calName]);
+            $calendar = new Calendar(
+                $this->model->calendars[$calName]['url'],
+                $this->model->actions,
+                $this->model->modes
+            );
+            $stat->add($calendar);
         }
         $view = new Views\CsvView(
             $stat->title . '_realised.csv',
@@ -65,12 +68,12 @@ class Controller
     protected function actiontableauAction($post)
     {
         if (isset($post["showArchived"])) {
-            $csv = $this->model->exportActionsWithArchivedToCsv();
+            $csv = $this->model->actions->exportToCsvWithArchive();
             $filename = 'action+archive.csv';
         }
 
         if (!isset($post["showArchived"])) {
-            $csv = $this->model->exportActionsNoArchivesToCsv();
+            $csv = $this->model->actions->exportToCsvNoArchive();
             $filename = 'action.csv';
         }
 
@@ -80,7 +83,7 @@ class Controller
 
     protected function actiontableauModalite()
     {
-        $view = new Views\CsvView('modalites.csv', $this->model->exportModesToCsv());
+        $view = new Views\CsvView('modalites.csv', $this->model->modes->exportToCsv());
         $view->show();
     }
 
@@ -110,7 +113,12 @@ class Controller
                 break;
         }
         foreach ($post["ics"] as $calName) {
-            $stat->add($this->model->calendars[$calName]);
+            $calendar = new Calendar(
+                $this->model->calendars[$calName]['url'],
+                $this->model->actions,
+                $this->model->modes
+            );
+            $stat->add($calendar);
         }
         return $stat;
     }

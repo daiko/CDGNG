@@ -23,6 +23,11 @@ class Calendar
         $this->events = array();
 
         $lines = file($this->filename, FILE_SKIP_EMPTY_LINES);
+
+        if ($lines === false) {
+            throw new \Exception("Can't open file '$this->filename'", 1);
+        }
+
         $lines = array_map('trim', $lines);
 
         foreach ($lines as $line) {

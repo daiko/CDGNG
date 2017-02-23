@@ -16,13 +16,19 @@ if (!is_dir('vendor')) {
 }
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-include "./data/actions.php";
-include "./data/modalites.php";
+$actions = new PhpFiles\Actions('data/actions.php');
+$actions->read();
 
-$configuration = new PhpConfig('config.php');
-$configuration->read();
+$modes = new PhpFiles\Modes('data/modes.php');
+$modes->read();
 
-$model = new Model($configuration, $GLOBALS['actions'], $GLOBALS['modalites']);
+$calendars = new PhpFiles\Data('data/calendars.php');
+$calendars->read();
+
+$config = new PhpFiles\Config('config.php');
+$config->read();
+
+$model = new Model($config, $actions, $modes, $calendars);
 
 $controller = new Controller($model);
 $controller->run($_POST);

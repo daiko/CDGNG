@@ -113,7 +113,7 @@ class Event
 	 *
 	 * @return true or false.
 	 */
-	function isValid($events, &$error) {
+	function isValid($events, $actions, $modes, &$error) {
 
 		// Event without end
 		if (!isset($this->e["DTEND"])) {
@@ -142,13 +142,13 @@ class Event
 		}
 
 		// bad code
-		if (!array_key_exists($code["mod"], $GLOBALS['modalites'])) {
+		if (!$modes->isExist($code["mod"])) {
 			$error = array(2, "Mauvais code (modalité).");
 			return false;
 		}
 
 		// bad code
-		if (!array_key_exists($code["act"], $GLOBALS['actions'])) {
+		if (!$actions->isExist($code["act"])) {
 			$error = array(2, "Mauvais code (action).");
 			return false;
 		}

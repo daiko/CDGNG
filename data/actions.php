@@ -1,6 +1,6 @@
 <?php
 // Tableau des actions du cdg
-$GLOBALS['actions'] = array(
+$data = array(
     '001' => array(
         'Intitulé' => "Instances de SupAgro",
         'Description' => "Uniquement si aucun lien avec une action - Ne "

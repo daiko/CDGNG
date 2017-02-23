@@ -14,7 +14,8 @@
           "CDGNG\\": "app",
           "CDGNG\\Parser\\": "app/Parser",
           "CDGNG\\Views\\": "app/Views",
-          "CDGNG\\Statistics\\": "app/Statistics"
+          "CDGNG\\Statistics\\": "app/Statistics",
+           "CDGNG\\PhpFiles\\": "app/PhpFiles"
         }
     },
     "require": {
