@@ -1,0 +1,12 @@
+{% for calName,calendar in calendars %}
+  <form action="?view=admin" method="post">
+    <b>{{ calName }}</b> {{ calendar.url }}
+    <a href='?view=admin&action=deleteCalendar&name={{ calName }}'>Supprimer</a>
+  </form>
+{% endfor %}
+
+<form action="?view=admin&action=addCalendar" method="post">
+  <input type='text' id='newCalendarName' name='newCalendarName' placeholder='Nom calendrier' />
+  <input type='text' id='newCalendarUrl' name='newCalendarUrl' placeholder='Url calendrier' />
+  <button type='submit'>+</button>
+</form>
