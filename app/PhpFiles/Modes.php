@@ -18,4 +18,12 @@ class Modes extends Code
         }
         return $csv;
     }
+
+    public function add($code, $title, $description)
+    {
+        $this->data[$code] = array(
+            'Intitulé' => $title,
+            'Description' => $description,
+        );
+    }
 }

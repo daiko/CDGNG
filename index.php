@@ -22,7 +22,7 @@ $actions->read();
 $modes = new PhpFiles\Modes('data/modes.php');
 $modes->read();
 
-$calendars = new PhpFiles\Data('data/calendars.php');
+$calendars = new PhpFiles\Calendars('data/calendars.php');
 $calendars->read();
 
 $config = new PhpFiles\Config('config.php');

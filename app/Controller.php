@@ -12,6 +12,16 @@ class Controller
 
     public function run($post, $get)
     {
+        if (isset($get['action'])) {
+            $method = 'action' . ucfirst($get['action']);
+            if (method_exists($this, $method)) {
+                $this->$method($post, $get);
+            }
+
+            header("Location: ?view=" . $get['view']);
+            return;
+        }
+
         $view = new Views\Main($this->model);
 
         if (isset($get['view'])) {
@@ -37,7 +47,7 @@ class Controller
 
     protected function viewCsvActions($post)
     {
-        if (isset($post["archives"]) and $post["archives"] == 1) {
+        if (isset($post["archives"]) and $post["archives"] === '1') {
             $csv = $this->model->actions->exportToCsvWithArchive();
             $filename = 'action+archive.csv';
             return new Views\CsvView($filename, $csv);
@@ -86,6 +96,25 @@ class Controller
             $stat->title . '.csv',
             $stat->exportAsCsv()
         );
+    }
+
+    protected function actionDelCalendar($post, $get)
+    {
+        if (!isset($get['name'])) {
+            return;
+        }
+        $this->model->calendars->remove($get['name']);
+        $this->model->calendars->write();
+    }
+
+    protected function actionAddCalendar($post, $get)
+    {
+        if (!isset($post['name']) or !isset($post['url'])) {
+            return;
+        }
+
+        $this->model->calendars->add($post['name'], $post['url']);
+        $this->model->calendars->write();
     }
 
     private function getStatistics($post)

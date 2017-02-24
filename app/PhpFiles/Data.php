@@ -23,9 +23,9 @@ class Data implements \ArrayAccess, \Iterator
 
     public function write()
     {
-        $fileContent = "<?php\n\$parameters = "
-            . var_export($this->parameters)
-            . ';\n';
+        $fileContent = "<?php\n\$data = "
+            . var_export($this->data, true)
+            . ";\n";
 
         file_put_contents($this->filename, $fileContent);
     }

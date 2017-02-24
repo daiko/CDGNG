@@ -7,4 +7,10 @@ class Code extends Data
     {
         return array_key_exists($code, $this->data);
     }
+
+    public function remove($property)
+    {
+        unset($this->data[$property]);
+    }
+
 }
