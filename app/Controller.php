@@ -10,41 +10,54 @@ class Controller
         $this->model = $model;
     }
 
-    public function run($post)
+    public function run($post, $get)
     {
-        if (!isset($post["action"])) {
-            $view = new Views\Main($this->model);
-            $view->show();
-            return;
-        }
+        $view = new Views\Main($this->model);
 
-        $method = 'action' . $post['action'];
-        if (!method_exists($this, $method)) {
-            throw new \Exception("Vous essayez de faire des choses sales...", 1);
+        if (isset($get['view'])) {
+            $method = 'view' . ucfirst($get['view']);
+            if (method_exists($this, $method)) {
+                $view = $this->$method($post);
+            }
         }
-        $this->$method($post);
-    }
-
-    protected function actionShow($post)
-    {
-        $this->checkSelectedFile($post);
-        $stat = $this->getStatistics($post);
-        $view = new Views\Results($this->model, $stat);
         $view->show();
     }
 
-    protected function actionExport($post)
+    protected function viewAdmin()
+    {
+        return new Views\Admin($this->model);
+    }
+
+    protected function viewStatistics($post)
     {
         $this->checkSelectedFile($post);
         $stat = $this->getStatistics($post);
-        $view = new Views\CsvView(
-            $stat->title . '.csv',
-            $stat->exportAsCsv()
+        return new Views\Results($this->model, $stat);
+    }
+
+    protected function viewCsvActions($post)
+    {
+        if (isset($post["archives"]) and $post["archives"] == 1) {
+            $csv = $this->model->actions->exportToCsvWithArchive();
+            $filename = 'action+archive.csv';
+            return new Views\CsvView($filename, $csv);
+        }
+
+        $csv = $this->model->actions->exportToCsvNoArchive();
+        $filename = 'action.csv';
+
+        return new Views\CsvView($filename, $csv);
+    }
+
+    protected function viewCsvModes()
+    {
+        return new Views\CsvView(
+            'modalites.csv',
+            $this->model->modes->exportToCsv()
         );
-        $view->show();
     }
 
-    protected function actionRealised($post)
+    protected function viewCsvExecuted($post)
     {
         $this->checkSelectedFile($post);
         // TODO Ne plus utilisé $_POST ici... affreux !
@@ -65,26 +78,14 @@ class Controller
         $view->show();
     }
 
-    protected function actiontableauAction($post)
+    protected function viewCsvStatistics($post)
     {
-        if (isset($post["showArchived"])) {
-            $csv = $this->model->actions->exportToCsvWithArchive();
-            $filename = 'action+archive.csv';
-        }
-
-        if (!isset($post["showArchived"])) {
-            $csv = $this->model->actions->exportToCsvNoArchive();
-            $filename = 'action.csv';
-        }
-
-        $view = new Views\CsvView($filename, $csv);
-        $view->show();
-    }
-
-    protected function actiontableauModalite()
-    {
-        $view = new Views\CsvView('modalites.csv', $this->model->modes->exportToCsv());
-        $view->show();
+        $this->checkSelectedFile($post);
+        $stat = $this->getStatistics($post);
+        return new Views\CsvView(
+            $stat->title . '.csv',
+            $stat->exportAsCsv()
+        );
     }
 
     private function getStatistics($post)

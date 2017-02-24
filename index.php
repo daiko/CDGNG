@@ -31,4 +31,4 @@ $config->read();
 $model = new Model($config, $actions, $modes, $calendars);
 
 $controller = new Controller($model);
-$controller->run($_POST);
+$controller->run($_POST, $_GET);

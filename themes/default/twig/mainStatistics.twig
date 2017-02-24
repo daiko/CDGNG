@@ -1,0 +1,84 @@
+<form method="post" action="index.php?view=csvRealised" class="form-horizontal span5">
+  <div class="control-group">
+    <label class="control-label" for="ics">Utilisateur(s) :
+    </label>
+    <div class="controls">
+      <select name='ics[]' size='10' class='span3' multiple='multiple'>
+        {% for name, path in calendars %}
+          <option id='{{ name }}' name='ics' value='{{ name }}'>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <br/>
+    <label class="control-label" for="action">Action(s) :
+    </label>
+    <div class="controls">
+      <select name="codes[]" size=5 class="span3" multiple="multiple">
+        <option value="Tous" selected="selected">Tous</option>
+        {% for code, action in actions %}
+          <option name='codes' value='{{ code }}'>[{{ code }}]
+            {{ action.Intitulé }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <!-- Formulaire -->
+  <div class="control-group">
+
+    <label class="control-label" for="date_debut">Date de début :
+    </label>
+    <div class="controls">
+      <div class="input-append date datepicker" id="dp3" data-date="{{ " now"|date(" d-m-Y") }}" data-date-format="dd-mm-yyyy">
+        <input id="date_debut" class="span2" value="{{ " now"|date(" d-m-Y") }}" type="text" name="startDate" required="required" readonly/>
+        <span class="add-on">
+          <i class="icon-calendar"></i>
+        </span>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="date_fin">Date de fin :</label>
+    <div class="controls">
+
+      <div class="input-append date datepicker" id="dp2" data-date="{{ " now"|date(" d-m-Y") }}" data-date-format="dd-mm-yyyy">
+        <input id="date_fin" class="span2" value="{{ " now"|date(" d-m-Y") }}" type="text" name="endDate" required="required" readonly/>
+        <span class="add-on">
+          <i class="icon-calendar"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-group">
+      <label class="control-label" for="ics">Export :
+      </label>
+      <div class="controls">
+        <select class="span3" name="export">
+          <option value="All">Total</option>
+          <option value="day">Par jours</option>
+          <option value="week">Par semaines</option>
+          <option value="month">Par mois</option>
+          <option value="year">Par ans</option>
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button id="showresults" class="btn btn-primary" formaction='?view=Statistics' type="submit" name="action" value="Show">
+        <i class="icon-eye-open icon-white"></i>
+        Afficher</button>
+      <button id="export" class="btn btn-info control-button" formaction='?view=csvStatistics' type="submit" name="action" value="Export">
+        <i class="icon-download-alt icon-white"></i>
+        Exporter
+      </button>
+    </div>
+  </div>
+
+</form>
