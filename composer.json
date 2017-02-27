@@ -11,11 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-          "CDGNG\\": "app",
-          "CDGNG\\Parser\\": "app/Parser",
-          "CDGNG\\Views\\": "app/Views",
-          "CDGNG\\Statistics\\": "app/Statistics",
-           "CDGNG\\PhpFiles\\": "app/PhpFiles"
+            "CDGNG\\": "app",
+            "CDGNG\\Parser\\": "app/Parser",
+            "CDGNG\\Views\\": "app/Views",
+            "CDGNG\\Statistics\\": "app/Statistics",
+            "CDGNG\\PhpFiles\\": "app/PhpFiles",
+            "CDGNG\\Controller\\Actions\\": "app/Controller/Actions"
         }
     },
     "require": {

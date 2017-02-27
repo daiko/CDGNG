@@ -14,7 +14,10 @@ class Data implements \ArrayAccess, \Iterator
     public function read()
     {
         if (!is_file($this->filename)) {
-            throw new \Exception("'$this->filename' does not exist", 1);
+            throw new \Exception(
+                "Le fichier '$this->filename' n'existe pas.",
+                1
+            );
         }
         $data = array();
         include($this->filename);
@@ -23,6 +26,13 @@ class Data implements \ArrayAccess, \Iterator
 
     public function write()
     {
+        if (!is_writable($this->filename)) {
+            throw new \Exception(
+                "Le fichier '$this->filename' n'est pas accessible en écriture.",
+                1
+            );
+        }
+
         $fileContent = "<?php\n\$data = "
             . var_export($this->data, true)
             . ";\n";

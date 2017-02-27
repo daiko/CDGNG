@@ -8,5 +8,5 @@
 </form>
 {% for code,action in actions %}
   {{ code }} {{ action.Intitulé }} {{ action.Description }} {{ action.Referent }}
-  <a href="?view=admin&action=delMode&code={{ code }}">Supprimer</a><br/>
+  <a href="?view=admin&action=delAction&code={{ code }}">Supprimer</a><br/>
 {% endfor %}

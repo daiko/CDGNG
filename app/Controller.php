@@ -13,10 +13,12 @@ class Controller
     public function run($post, $get)
     {
         if (isset($get['action'])) {
-            $method = 'action' . ucfirst($get['action']);
-            if (method_exists($this, $method)) {
-                $this->$method($post, $get);
-            }
+            $classAction = '\\CDGNG\\Controller\\Actions\\' . ucfirst($get['action']);
+            /**if (!class_exists($classAction)) {
+                throw new \Exception("Action inconnue", 1);
+            }*/
+            $action = new $classAction($post, $get, $this->model);
+            $action->execute();
 
             header("Location: ?view=" . $get['view']);
             return;
@@ -96,80 +98,6 @@ class Controller
             $stat->title . '.csv',
             $stat->exportAsCsv()
         );
-    }
-
-    protected function actionDelCalendar($post, $get)
-    {
-        if (!isset($get['name'])) {
-            return;
-        }
-        $this->model->calendars->remove($get['name']);
-        $this->model->calendars->write();
-    }
-
-    protected function actionAddCalendar($post, $get)
-    {
-        if (!isset($post['name']) or !isset($post['url'])) {
-            return;
-        }
-
-        $this->model->calendars->add($post['name'], $post['url']);
-        $this->model->calendars->write();
-    }
-
-    protected function actionDelMode($post, $get)
-    {
-        if (!isset($get['code'])) {
-            return;
-        }
-        $this->model->modes->remove($get['code']);
-        $this->model->modes->write();
-    }
-
-    protected function actionAddMode($post, $get)
-    {
-        if (!isset($post['code'])
-            or !isset($post['title'])
-            or !isset($post['description'])
-        ) {
-            return;
-        }
-
-        $this->model->modes->add($post['code'], $post['title'], $post['description']);
-        $this->model->modes->write();
-    }
-
-    protected function actionDelAction($post, $get)
-    {
-        if (!isset($get['code'])) {
-            return;
-        }
-        $this->model->actions->remove($get['code']);
-        $this->model->actions->write();
-    }
-
-    protected function actionAddAction($post, $get)
-    {
-        if (!isset($post['code'])
-            or !isset($post['title'])
-            or !isset($post['description'])
-            or !isset($post['referent'])
-        ) {
-            return;
-        }
-
-        if (!isset($post['archive'])) {
-            $post['archive'] = 0;
-        }
-
-        $this->model->actions->add(
-            $post['code'],
-            $post['title'],
-            $post['description'],
-            $post['referent'],
-            $post['archive']
-        );
-        $this->model->actions->write();
     }
 
     private function getStatistics($post)
