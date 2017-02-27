@@ -3,3 +3,4 @@
 .phpintel/
 /vendor/
 /composer.lock
+/data/*.php
