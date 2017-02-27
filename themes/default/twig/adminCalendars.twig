@@ -1,12 +1,9 @@
-{% for calName,calendar in calendars %}
-  <form action="?view=admin" method="post">
-    <b>{{ calName }}</b> {{ calendar.url }}
-    <a href='?view=admin&action=delCalendar&name={{ calName }}'>Supprimer</a>
-  </form>
-{% endfor %}
-
 <form action="?view=admin&action=addCalendar" method="post">
-  <input type='text' id='Name' name='name' placeholder='Nom calendrier' />
-  <input type='text' id='url' name='url' placeholder='Url calendrier' />
+  <input type='text' pattern='[A-Za-z]+' name='name' placeholder='Nom calendrier' required />
+  <input type='url' name='url' placeholder='Url calendrier' required />
   <button type='submit'>+</button>
 </form>
+
+{% for calName,calendar in calendars %}
+  <b>{{ calName }}</b> {{ calendar.url }} <a href='?view=admin&action=delCalendar&name={{ calName }}'>Supprimer</a><br />
+{% endfor %}

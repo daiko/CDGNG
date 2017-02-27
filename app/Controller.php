@@ -117,6 +117,61 @@ class Controller
         $this->model->calendars->write();
     }
 
+    protected function actionDelMode($post, $get)
+    {
+        if (!isset($get['code'])) {
+            return;
+        }
+        $this->model->modes->remove($get['code']);
+        $this->model->modes->write();
+    }
+
+    protected function actionAddMode($post, $get)
+    {
+        if (!isset($post['code'])
+            or !isset($post['title'])
+            or !isset($post['description'])
+        ) {
+            return;
+        }
+
+        $this->model->modes->add($post['code'], $post['title'], $post['description']);
+        $this->model->modes->write();
+    }
+
+    protected function actionDelAction($post, $get)
+    {
+        if (!isset($get['code'])) {
+            return;
+        }
+        $this->model->actions->remove($get['code']);
+        $this->model->actions->write();
+    }
+
+    protected function actionAddAction($post, $get)
+    {
+        if (!isset($post['code'])
+            or !isset($post['title'])
+            or !isset($post['description'])
+            or !isset($post['referent'])
+        ) {
+            return;
+        }
+
+        if (!isset($post['archive'])) {
+            $post['archive'] = 0;
+        }
+
+        $this->model->actions->add(
+            $post['code'],
+            $post['title'],
+            $post['description'],
+            $post['referent'],
+            $post['archive']
+        );
+        $this->model->actions->write();
+    }
+
     private function getStatistics($post)
     {
         $tab = explode("-", $post["startDate"], 3);

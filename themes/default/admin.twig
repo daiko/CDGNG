@@ -13,11 +13,20 @@
   <div class="container-fluid">
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a href="#calendars" data-toggle="tab">Calendriers</a></li>
+      <li>               <a href="#actions" data-toggle="tab">Actions</a></li>
+      <li>               <a href="#modes" data-toggle="tab">Modalités</a></li>
     </ul>
-
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane in active" id="calendars">
         {% include 'twig/adminCalendars.twig' %}
+      </div>
+
+      <div class="tab-pane fade" id="modes">
+        {% include 'twig/adminModes.twig' %}
+      </div>
+
+      <div class="tab-pane fade" id="actions">
+        {% include 'twig/adminActions.twig' %}
       </div>
     </div>
   </div>

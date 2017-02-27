@@ -1,0 +1,17 @@
+<form action="?view=admin&action=addMode" method="post">
+  <input type='text' name='code' pattern='[A-Za-z]' size='1' placeholder='Code' required />
+  <input type='text' name='title' placeholder='Intitulé' required />
+  <input type='text' name='description' placeholder='description' />
+  <button type='submit'>+</button>
+</form>
+
+<table>
+{% for code,mode in modes %}
+  <tr>
+    <td><b>{{ code }}</b></td>
+    <td>{{ mode.Intitulé }}</td>
+    <td>{{ mode.Description }}</td>
+    <td><a href="?view=admin&action=delMode&code={{ code }}">Supprimer</a></td>
+  </tr>
+{% endfor %}
+</table>

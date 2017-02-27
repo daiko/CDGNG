@@ -1,0 +1,12 @@
+<form action="?view=admin&action=addAction" method="post">
+  <input type='number' name='code' min='0' max='999' placeholder='Code' maxlength='1' minlength='1' size='3' required />
+  <input type='text' name='title' placeholder='Intitulé' required />
+  <input type='text' name='description' placeholder='description' />
+  <input type='text' name='referent' placeholder='Référent' required />
+  <input type='checkbox' name='archive' value='1' />
+  <button type='submit'>+</button>
+</form>
+{% for code,action in actions %}
+  {{ code }} {{ action.Intitulé }} {{ action.Description }} {{ action.Referent }}
+  <a href="?view=admin&action=delMode&code={{ code }}">Supprimer</a><br/>
+{% endfor %}
