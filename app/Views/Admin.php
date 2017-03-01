@@ -14,6 +14,7 @@ class Admin extends TwigView
             'calendars' => $this->model->calendars,
             'actions' => $this->model->actions,
             'modes' => $this->model->modes,
+            'users' => $this->model->users,
         );
     }
 }

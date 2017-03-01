@@ -17,6 +17,7 @@
       <li class="active"><a href="#calendars" data-toggle="tab">Calendriers</a></li>
       <li>               <a href="#actions" data-toggle="tab">Actions</a></li>
       <li>               <a href="#modes" data-toggle="tab">Modalités</a></li>
+      <li>               <a href="#users" data-toggle="tab">Utilisateurs</a></li>
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane in active" id="calendars">
@@ -29,6 +30,10 @@
 
       <div class="tab-pane fade" id="actions">
         {% include 'twig/adminActions.twig' %}
+      </div>
+
+      <div class="tab-pane fade" id="users">
+        {% include 'twig/adminUsers.twig' %}
       </div>
     </div>
   </div>

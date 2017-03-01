@@ -1,0 +1,15 @@
+<form action="?view=admin&action=addUser" method="post">
+  <input type='text' name='login' pattern='[A-Za-z]+' placeholder='Identifiant' required />
+  <input type='password' name='password1' placeholder='Mot de passe' required />
+  <input type='password' name='password2' placeholder='Vérification MdP' />
+  <button type='submit'>+</button>
+</form>
+
+<table>
+{% for user in users %}
+  <tr>
+    <td><b>{{ user.login }}</b></td>
+    <td><a href="?view=admin&action=delUser&login={{ user.login }}">Supprimer</a></td>
+  </tr>
+{% endfor %}
+</table>

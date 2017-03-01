@@ -15,6 +15,13 @@ class Users extends Code
         return false;
     }
 
+    public function add($login, $password)
+    {
+        $user = new \CDGNG\User($login);
+        $user->setPassword($password);
+        $this->data[$login] = $user;
+    }
+
     public function checkCredentials($login, $password)
     {
         if ($this->isExist($login)
