@@ -1,7 +1,7 @@
 <?php
 namespace CDGNG\Controller\Actions;
 
-class AddCalendar extends Action
+class AddCalendar extends AdminAction
 {
     protected function do()
     {

@@ -5,6 +5,7 @@ abstract class Action
 {
     protected $post;
     protected $get;
+    protected $model;
 
     public function __construct($post, $get, $model)
     {

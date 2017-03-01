@@ -16,6 +16,11 @@ if (!is_dir('vendor')) {
 }
 $loader = require __DIR__ . '/vendor/autoload.php';
 
+session_start();
+
+$users = new PhpFiles\Users('data/users.php');
+$users->read();
+
 $actions = new PhpFiles\Actions('data/actions.php');
 $actions->read();
 
@@ -28,7 +33,7 @@ $calendars->read();
 $config = new PhpFiles\Config('config.php');
 $config->read();
 
-$model = new Model($config, $actions, $modes, $calendars);
+$model = new Model($config, $actions, $modes, $calendars, $users);
 
 $controller = new Controller($model);
-$controller->run($_POST, $_GET);
+$controller->run($_POST, $_GET, $_SESSION);

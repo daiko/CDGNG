@@ -10,15 +10,21 @@ class Controller
         $this->model = $model;
     }
 
-    public function run($post, $get)
+    public function run($post, $get, $session)
     {
+        if (isset($session['login']) and isset($session['password'])) {
+            $this->model->users->connect($session['login'], $session['password']);
+        }
+
         if (isset($get['action'])) {
+
             $classAction = '\\CDGNG\\Controller\\Actions\\' . ucfirst($get['action']);
-            /**if (!class_exists($classAction)) {
-                throw new \Exception("Action inconnue", 1);
-            }*/
+
             $action = new $classAction($post, $get, $this->model);
             $action->execute();
+            if (!isset($get['view'])) {
+                $get['view'] = '';
+            }
 
             header("Location: ?view=" . $get['view']);
             return;
@@ -37,6 +43,9 @@ class Controller
 
     protected function viewAdmin()
     {
+        if (!$this->model->users->isAdmin()) {
+            return new Views\Auth($this->model);
+        }
         return new Views\Admin($this->model);
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace CDGNG\Controller\Actions;
 
-class DelMode extends Action
+class DelMode extends AdminAction
 {
     protected function do()
     {

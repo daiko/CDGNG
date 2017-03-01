@@ -1,7 +1,7 @@
 <?php
 namespace CDGNG\Controller\Actions;
 
-class AddAction extends Action
+class AddAction extends AdminAction
 {
     protected function do()
     {

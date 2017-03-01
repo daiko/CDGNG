@@ -4,7 +4,7 @@ namespace CDGNG\PhpFiles;
 class Data implements \ArrayAccess, \Iterator
 {
     protected $filename;
-    protected $data;
+    protected $data = array();
 
     public function __construct($filename)
     {
@@ -14,10 +14,7 @@ class Data implements \ArrayAccess, \Iterator
     public function read()
     {
         if (!is_file($this->filename)) {
-            throw new \Exception(
-                "Le fichier '$this->filename' n'existe pas.",
-                1
-            );
+            $this->write(); // Créé le fichier si il n'existe pas.
         }
         $data = array();
         include($this->filename);
@@ -26,7 +23,7 @@ class Data implements \ArrayAccess, \Iterator
 
     public function write()
     {
-        if (!is_writable($this->filename)) {
+        if (file_exists($this->filename) and !is_writable($this->filename)) {
             throw new \Exception(
                 "Le fichier '$this->filename' n'est pas accessible en écriture.",
                 1
@@ -37,7 +34,12 @@ class Data implements \ArrayAccess, \Iterator
             . var_export($this->data, true)
             . ";\n";
 
-        file_put_contents($this->filename, $fileContent);
+        if (file_put_contents($this->filename, $fileContent) === false) {
+            throw new \Exception(
+                "Erreur lors de l'écriture dans le fichier '$this->filename'",
+                1
+            );
+        }
     }
 
     public function offsetSet($offset, $value)

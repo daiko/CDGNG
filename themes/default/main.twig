@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="fr">
 <head>
-
   <meta charset="utf-8"/>
   <title>CDG : Analyseur de calendrier</title>
   <meta name="description" content="">
@@ -10,11 +9,12 @@
   <link rel="stylesheet" href="themes/default/css/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="themes/default/css/datepicker.css">
   <link rel="stylesheet" href="themes/default/css/style.css">
-
 </head>
 
 <body>
   <div class="container-fluid">
+    <a href='?view=admin' class='text-right'>Administration</a>
+    <a href='?action=logout' class='text-right'>Déconnecter</a>
     <ul class="nav nav-tabs" id="myTab">
       <li class="active">
         <a href="#Actions" data-toggle="tab">Liste des Actions</a>
@@ -23,7 +23,6 @@
       <li><a href="#Executed" data-toggle="tab">Réalisé</a></li>
       <li><a href="#Statistics" data-toggle="tab">Calcul</a></li>
     </ul>
-
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane in active" id="Actions">
         {% include 'twig/mainActions.twig' %}
