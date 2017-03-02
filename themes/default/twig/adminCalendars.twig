@@ -1,9 +1,25 @@
-<form action="?view=admin&action=addCalendar" method="post">
-  <input type='text' pattern='[A-Za-z]+' name='name' placeholder='Nom calendrier' required />
-  <input type='url' name='url' placeholder='Url calendrier' required />
-  <button type='submit'>+</button>
-</form>
-
+<table class='table table-striped table-condensed table-hover'>
+  <tr>
+    <th class='col-md-2'>Nom</th>
+    <th class='col-md-9'>Adresse</th>
+    <th class='col-md-1'></th>
+  </tr>
+  <tr>
+    <form action="?view=admin&action=addCalendar" method="post">
+    <td><input type='text' pattern='[A-Za-z]+' name='name' placeholder='Nom calendrier' required /></td>
+    <td><input type='url' name='url' placeholder='Url calendrier' class="form-control" required /></td>
+    <td class='text-right'><button class='btn btn-success' type='submit'><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
+  </tr>
+  </form>
 {% for calName,calendar in calendars %}
-  <b>{{ calName }}</b> {{ calendar.url }} <a href='?view=admin&action=delCalendar&name={{ calName }}'>Supprimer</a><br />
+  <tr>
+    <td><b>{{ calName }}</b></td>
+    <td>{{ calendar.url }}</td>
+    <td class='text-right'>
+      <a class='btn btn-xs btn-danger' href='?view=admin&action=delCalendar&name={{ calName }}'>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true">
+      </a>
+    </td>
+  </tr>
 {% endfor %}
+</table>

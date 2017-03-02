@@ -1,20 +1,18 @@
-<form action="index.php?view=csvActions" method="post" class="form-inline">
-  <button id="exportTableauAction" class="btn btn-info" type="submit">
-    <i class="icon-download-alt icon-white"></i>
-    Exporter
-  </button>
-  <label class="checkbox">
-    <input type="checkbox" id="showArchived" name="archives" value="1">Voir les actions archivées.</input>
-  </label>
+<form class="form-inline" action="index.php?view=csvActions" method="post">
+  <button class="btn btn-info btn-sm" type="submit"><span class="glyphicon glyphicon-download-alt"></span> Exporter (CSV)</button>
+  <div class="form-group">
+    <input type="checkbox" id="showArchived" name="archives" value="1" />
+    <label for='showArchived'>Voir les actions archivées.</label>
+  </div>
 </form>
 
-<table class="table table-striped table-bordered table-condensed">
+<table class="table table-striped table-condensed">
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Intitulé</th>
-      <th>Description</th>
-      <th>Référent</th>
+      <th class='col-md-1'>Code</th>
+      <th class='col-md-3'>Intitulé</th>
+      <th class='col-md-6'>Description</th>
+      <th class='col-md-2'>Référent</th>
     </tr>
   </thead>
   <tbody>

@@ -1,61 +1,58 @@
-<!doctype html>
-<html class="no-js" lang="fr">
-<head>
-  <meta charset="utf-8"/>
-  <title>CDG : Analyseur de calendrier</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="themes/default/css/bootstrap.min.css">
-  <link rel="stylesheet" href="themes/default/css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="themes/default/css/datepicker.css">
-  <link rel="stylesheet" href="themes/default/css/style.css">
-</head>
+{% include 'twig/header.twig' %}
 
-<body>
-  <div class="container-fluid">
-    <a href='?view=admin' class='text-right'>Administration</a>
-    <a href='?action=logout' class='text-right'>Déconnecter</a>
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active">
-        <a href="#Actions" data-toggle="tab">Liste des Actions</a>
-      </li>
-      <li><a href="#Modalites" data-toggle="tab">Liste des Modalites</a></li>
-      <li><a href="#Executed" data-toggle="tab">Réalisé</a></li>
-      <li><a href="#Statistics" data-toggle="tab">Calcul</a></li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane in active" id="Actions">
-        {% include 'twig/mainActions.twig' %}
-      </div>
-
-      <div class="tab-pane fade" id="Modalites">
-        {% include 'twig/mainModes.twig' %}
-      </div>
-
-      <div class="tab-pane fade" id="Executed">
-        {% include 'twig/mainExecuted.twig' %}
-      </div>
-
-      <div class="tab-pane fade" id="Statistics">
-        {% include 'twig/mainStatistics.twig' %}
-      </div>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">CDG</a>
     </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a data-toggle="tab" href="#Actions">Actions</a></li>
+        <li><a data-toggle="tab" href="#Modes">Modalités</a></li>
+        <li><a data-toggle="tab" href="#Executed">Réalisé</a></li>
+        <li><a data-toggle="tab" href="#Statistics">Calcul</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class='dropdown'>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="?view=admin">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
+            {% if connectedUser %}
+            <li role="separator" class="divider"></li>
+            <li><a href='?action=logout'>Déconnecter ({{ connectedUser.login }})</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
   </div>
+</nav>
 
-  <script type="text/javascript" src="themes/default/js/jquery-1.7.2.min.js"></script>
-  <script type="text/javascript" src="themes/default/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="themes/default/js/bootstrap-datepicker.js"></script>
+<div class="container">
+  <div class="tab-content">
+    <div class="tab-pane active" id="Actions" role="tabpanel">{% include 'twig/mainActions.twig' %}</div>
+    <div class="tab-pane" id="Modes" role="tabpanel">{% include 'twig/mainModes.twig' %}</div>
+    <div class="tab-pane" id="Executed" role="tabpanel">{% include 'twig/mainExecuted.twig' %}</div>
+    <div class="tab-pane" id="Statistics" role="tabpanel">{% include 'twig/mainStatistics.twig' %}</div>
+  </div>
+</div>
 
-  <script type="text/javascript">
-    $('#showArchived').on("click", function() {
-      if ($('#showArchived').is(':checked')) {
-        $('tr.archived').css('display', 'table-row');
-      } else {
-        $('tr.archived').css('display', 'none');
-      }
+
+
+<script type="text/javascript">
+  document.onreadystatechange = function () {
+    $('#startDate').datetimepicker({
+      format: 'DD-MM-YYYY'
     });
+    $('#endDate').datetimepicker({
+      format: 'DD-MM-YYYY'
+    });
+    $('#date').datetimepicker({
+      format: 'DD-MM-YYYY'
+    });
+  };
+</script>
 
-    $('.datepicker').datepicker();
-  </script>
-</body>
-</html>
+{% include 'twig/footer.twig' %}

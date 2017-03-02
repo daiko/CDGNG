@@ -10,6 +10,8 @@ class Auth extends TwigView
 
     protected function getData()
     {
-        return array();
+        return array(
+            'pageTitle' => "CDG : Authentification",
+        );
     }
 }

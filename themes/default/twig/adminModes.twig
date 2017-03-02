@@ -1,17 +1,28 @@
-<form action="?view=admin&action=addMode" method="post">
-  <input type='text' name='code' pattern='[A-Za-z]' size='1' placeholder='Code' required />
-  <input type='text' name='title' placeholder='Intitulé' required />
-  <input type='text' name='description' placeholder='description' />
-  <button type='submit'>+</button>
-</form>
-
-<table>
+<table class='table table-striped table-condensed table-hover'>
+  <tr>
+    <th class='col-md-1'>Code</th>
+    <th class='col-md-4'>Intitulé</th>
+    <th class='col-md-6'>Description</th>
+    <th class='col-md-1'></th>
+  </tr>
+  <tr>
+    <form action="?view=admin&action=addMode" method="post">
+      <td><input class="form-control" type='text' name='code' pattern='[A-Za-z]' size='1' placeholder='Code' required /></td>
+      <td><input class="form-control" type='text' name='title' placeholder='Intitulé' required /></td>
+      <td><input class="form-control" type='text' name='description' placeholder='description' /></td>
+      <td class='text-right'><button class='btn btn-success' type='submit'><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
+    </form>
+  </tr>
 {% for code,mode in modes %}
   <tr>
-    <td><b>{{ code }}</b></td>
+    <td>{{ code }}</td>
     <td>{{ mode.Intitulé }}</td>
     <td>{{ mode.Description }}</td>
-    <td><a href="?view=admin&action=delMode&code={{ code }}">Supprimer</a></td>
+    <td class='text-right'>
+      <a class='btn btn-xs btn-danger' href="?view=admin&action=delMode&code={{ code }}">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true">
+      </a>
+    </td>
   </tr>
 {% endfor %}
 </table>

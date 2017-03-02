@@ -19,6 +19,7 @@ class Results extends TwigView
     protected function getData()
     {
         return array(
+            'pageTitle' => "CDG : statistiques",
             'actions' => $this->model->actions,
             'modes' => $this->model->modes,
             'errors' => $this->getErrors(),

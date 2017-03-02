@@ -1,44 +1,43 @@
-<!doctype html>
-<html class="no-js" lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <title>CDG : Administration</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="themes/default/css/bootstrap.min.css">
-  <link rel="stylesheet" href="themes/default/css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="themes/default/css/style.css">
-</head>
-<body>
-  <a href='?view=' class='text-right'>Retour</a>
-  <a href='?action=logout' class='text-right'>Déconnecter</a>
-  <div class="container-fluid">
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="#calendars" data-toggle="tab">Calendriers</a></li>
-      <li>               <a href="#actions" data-toggle="tab">Actions</a></li>
-      <li>               <a href="#modes" data-toggle="tab">Modalités</a></li>
-      <li>               <a href="#users" data-toggle="tab">Utilisateurs</a></li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane in active" id="calendars">
-        {% include 'twig/adminCalendars.twig' %}
-      </div>
+{% include 'twig/header.twig' %}
 
-      <div class="tab-pane fade" id="modes">
-        {% include 'twig/adminModes.twig' %}
-      </div>
-
-      <div class="tab-pane fade" id="actions">
-        {% include 'twig/adminActions.twig' %}
-      </div>
-
-      <div class="tab-pane fade" id="users">
-        {% include 'twig/adminUsers.twig' %}
-      </div>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="?view=">CDG</a>
     </div>
+
+    <ul class="nav navbar-nav center-block">
+      <li class="active"><a href="#calendars" data-toggle="tab">Calendriers</a></li>
+      <li><a href="#actions" data-toggle="tab">Actions</a></li>
+      <li><a href="#modes" data-toggle="tab">Modalités</a></li>
+      <li><a href="#users" data-toggle="tab">Utilisateurs</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class='dropdown'>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="?view=admin">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
+          {% if connectedUser %}
+          <li role="separator" class="divider"></li>
+          <li><a href='?action=logout'>Déconnecter ({{ connectedUser.login }})</a></li>
+          {% endif %}
+        </ul>
+      </li>
+    </ul>
+
   </div>
-  <script type="text/javascript" src="themes/default/js/jquery-1.7.2.min.js"></script>
-  <script type="text/javascript" src="themes/default/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="themes/default/js/bootstrap-datepicker.js"></script>
-</body>
-</html>
+</nav>
+
+<div class="container">
+  <div class="tab-content">
+    <div class="tab-pane active" id="calendars" role="tabpanel">{% include 'twig/adminCalendars.twig' %}</div>
+    <div class="tab-pane" id="modes" role="tabpanel">{% include 'twig/adminModes.twig' %}</div>
+    <div class="tab-pane" id="actions" role="tabpanel">{% include 'twig/adminActions.twig' %}</div>
+    <div class="tab-pane" id="users" role="tabpanel">{% include 'twig/adminUsers.twig' %}</div>
+  </div>
+</div>
+
+{% include 'twig/footer.twig' %}
