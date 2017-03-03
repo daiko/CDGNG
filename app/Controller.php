@@ -21,24 +21,44 @@ class Controller
             $classAction = '\\CDGNG\\Controller\\Actions\\' . ucfirst($get['action']);
 
             $action = new $classAction($post, $get, $this->model);
-            $action->execute();
+
+            try {
+                $action->execute();
+            } catch (\Exception $e) {
+                $messages = new Messages();
+                $messages->add('error', $e->getMessage());
+            }
+
             if (!isset($get['view'])) {
                 $get['view'] = '';
             }
-
             header("Location: ?view=" . $get['view']);
             return;
         }
 
-        $view = new Views\Main($this->model);
+        if (!isset($get['view'])) {
+            $get['view'] = 'Main';
+        }
 
-        if (isset($get['view'])) {
-            $method = 'view' . ucfirst($get['view']);
-            if (method_exists($this, $method)) {
-                $view = $this->$method($post);
-            }
+        $method = 'view' . ucfirst($get['view']);
+        if (!method_exists($this, $method)) {
+            $method = 'viewMain';
+        }
+
+        try {
+            $view = $this->$method($post);
+        } catch (\Exception $e) {
+            $messages = new Messages();
+            $messages->add('error', $e->getMessage());
+            header("Location: ?view=");
+            return;
         }
         $view->show();
+    }
+
+    protected function viewMain()
+    {
+        return new Views\Main($this->model);
     }
 
     protected function viewAdmin()
@@ -148,7 +168,7 @@ class Controller
     private function checkSelectedFile($post)
     {
         if (!isset($post["ics"])) {
-            throw new \Exception("Aucun fichier n'a été sélectionné", 1);
+            throw new \Exception("Aucun calendrier n'a été sélectionné", 1);
         }
     }
 }

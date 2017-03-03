@@ -10,8 +10,11 @@ class Auth extends TwigView
 
     protected function getData()
     {
+        $messages = new \CDGNG\Messages();
+
         return array(
             'pageTitle' => "CDG : Authentification",
+            'messages' => $messages->getAll(),
         );
     }
 }

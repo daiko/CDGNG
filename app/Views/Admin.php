@@ -10,6 +10,8 @@ class Admin extends TwigView
 
     protected function getData()
     {
+        $messages = new \CDGNG\Messages();
+
         return array(
             'pageTitle' => "CDG : Administration",
             'calendars' => $this->model->calendars,
@@ -17,6 +19,7 @@ class Admin extends TwigView
             'modes' => $this->model->modes,
             'users' => $this->model->users,
             'connectedUser' => $this->model->users->connected,
+            'messages' => $messages->getAll(),
         );
     }
 }
