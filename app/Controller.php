@@ -116,7 +116,7 @@ class Controller
             $stat->title . '_realised.csv',
             $stat->exportAsCsv()
         );
-        $view->show();
+        return $view;
     }
 
     protected function viewCsvStatistics($post)
