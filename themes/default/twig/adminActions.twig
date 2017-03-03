@@ -24,7 +24,10 @@
     <td>{{ action.Description }}</td>
     <td>{{ action.Referent }}</td>
     <td>
-      {% if action.Visible == 1 %}Non{% else %}Oui{% endif %}
+
+      <a class='btn btn-xs btn-danger' href='?view=admin&action=switchAction&code={{ code }}'>
+        {% if action.Visible == 1 %}Non{% else %}Oui{% endif %}
+      </a>
     </td>
     <td class='text-right'>
       <a class='btn btn-xs btn-danger' href='?view=admin&action=delAction&code={{ code }}'>

@@ -49,4 +49,14 @@ class Actions extends Code
         );
         ksort($this->data);
     }
+
+    public function switchVisibility($code)
+    {
+        if ($this->data[$code]['Visible'] === 1) {
+            $this->data[$code]['Visible'] = 0;
+            return;
+        }
+        $this->data[$code]['Visible'] = 1;
+        return;
+    }
 }

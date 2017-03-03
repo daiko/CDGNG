@@ -7,9 +7,9 @@
     </div>
 
     <ul class="nav navbar-nav center-block">
-      <li class="active"><a href="#calendars" data-toggle="tab">Calendriers</a></li>
-      <li><a href="#actions" data-toggle="tab">Actions</a></li>
+      <li class="active"><a href="#actions" data-toggle="tab">Actions</a></li>
       <li><a href="#modes" data-toggle="tab">Modalités</a></li>
+      <li><a href="#calendars" data-toggle="tab">Calendriers</a></li>
       <li><a href="#users" data-toggle="tab">Utilisateurs</a></li>
     </ul>
 
@@ -34,9 +34,9 @@
 
 <div class="container">
   <div class="tab-content">
-    <div class="tab-pane active" id="calendars" role="tabpanel">{% include 'twig/adminCalendars.twig' %}</div>
+    <div class="tab-pane active" id="actions" role="tabpanel">{% include 'twig/adminActions.twig' %}</div>
     <div class="tab-pane" id="modes" role="tabpanel">{% include 'twig/adminModes.twig' %}</div>
-    <div class="tab-pane" id="actions" role="tabpanel">{% include 'twig/adminActions.twig' %}</div>
+    <div class="tab-pane" id="calendars" role="tabpanel">{% include 'twig/adminCalendars.twig' %}</div>
     <div class="tab-pane" id="users" role="tabpanel">{% include 'twig/adminUsers.twig' %}</div>
   </div>
 </div>
