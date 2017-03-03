@@ -30,10 +30,7 @@ $modes->read();
 $calendars = new PhpFiles\Calendars('data/calendars.php');
 $calendars->read();
 
-$config = new PhpFiles\Config('config.php');
-$config->read();
-
-$model = new Model($config, $actions, $modes, $calendars, $users);
+$model = new Model($actions, $modes, $calendars, $users);
 
 $controller = new Controller($model);
 $controller->run($_POST, $_GET, $_SESSION);
