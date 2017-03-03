@@ -23,10 +23,11 @@
     <td>{{ action.Intitulé }}</td>
     <td>{{ action.Description }}</td>
     <td>{{ action.Referent }}</td>
-    <td>
-
-      <a class='btn btn-xs btn-danger' href='?view=admin&action=switchAction&code={{ code }}'>
-        {% if action.Visible == 1 %}Non{% else %}Oui{% endif %}
+    <td class='text-center'>
+      <a class='btn btn-xs btn-primary' href='?view=admin&action=switchAction&code={{ code }}'>
+        {% if action.Visible == 1 %}<span class="glyphicon glyphicon-eye-open" aria-hidden="true">
+        {% else %}<span class="glyphicon glyphicon-eye-close" aria-hidden="true">
+        {% endif %}
       </a>
     </td>
     <td class='text-right'>
