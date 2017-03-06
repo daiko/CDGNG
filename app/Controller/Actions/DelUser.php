@@ -5,7 +5,7 @@ class DelUser extends AdminAction
 {
     protected function do()
     {
-        $this->model->users->remove($this->get['code']);
+        $this->model->users->remove($this->get['login']);
         $this->model->users->write();
     }
 
