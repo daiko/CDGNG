@@ -106,6 +106,7 @@ class Controller
         $stat = new Statistics\Realised($post["date"]);
         foreach ($post["ics"] as $calName) {
             $calendar = new Calendar(
+                $calName,
                 $this->model->calendars[$calName]['url'],
                 $this->model->actions,
                 $this->model->modes
@@ -156,6 +157,7 @@ class Controller
         }
         foreach ($post["ics"] as $calName) {
             $calendar = new Calendar(
+                $calName,
                 $this->model->calendars[$calName]['url'],
                 $this->model->actions,
                 $this->model->modes

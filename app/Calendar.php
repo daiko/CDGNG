@@ -21,12 +21,12 @@ class Calendar
     protected $modes;
 
 
-    public function __construct($path, $actions, $modes)
+    public function __construct($name, $path, $actions, $modes)
     {
         $this->path = $path;
         $this->actions = $actions;
         $this->modes = $modes;
-        $this->name = basename($path, '.ics');
+        $this->name = $name;
     }
 
     /**
