@@ -8,3 +8,13 @@ div.center-block {
   width: 300px;
   text-align: center;
 }
+
+.inline {
+  display:flex;
+  flex-flow: row;
+}
+
+.inline li {
+  list-style: none;
+  margin: 0 5px;
+}
