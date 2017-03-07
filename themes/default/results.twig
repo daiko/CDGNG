@@ -12,18 +12,16 @@
       <li><a href="#Erreurs" data-toggle="tab">Erreurs</a></li>
     </ul>
 
-    <form method="post" action="index.php" class="navbar-form navbar-left">
+    <form method="post" action="index.php?view=csvStatistics" class="navbar-form navbar-left">
       <select name="ics[]" multiple="multiple" class="hidden">
         {% for calendar in statistics.calendars %}
         <option selected name="ics" value="{{ calendar.calendar.name }}">{{ calendar.calendar.name }}</option>
         {% endfor %}
         </select>
-      <select name="export" class="hidden">
-        <option selected name="export" value="Total">Total</option>
-      </select>
+      <input name="export" class="hidden" value="{{ statistics.export }}" / >
       <input name="startDate" class ="hidden" value="{{ statistics.dtstart|date("d-m-Y") }}" />
       <input name="endDate" class="hidden" value="{{ statistics.end|date("d-m-Y") }}" />
-      <button id="export" class="btn btn-default" type="submit" name="action" value="Exporter">
+      <button class="btn btn-default" type="submit">
         <span class="glyphicon glyphicon-download-alt"></span> Exporter
       </button>
     </form>
@@ -31,7 +29,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li class='dropdown'>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
         </a>
         <ul class="dropdown-menu">
           <li><a href="?view=admin">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
