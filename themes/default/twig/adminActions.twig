@@ -4,7 +4,7 @@
     <th class='col-md-3'>Intitulé</th>
     <th class='col-md-4'>Description</th>
     <th class='col-md-1'>Référent</th>
-    <th class='col-md-1'>Archive</th>
+    <th class='col-md-1'>Visible</th>
     <th class='col-md-1'></th>
   </tr>
   <tr>
@@ -13,7 +13,7 @@
       <td><input class="form-control" type='text' name='title' placeholder='Intitulé' required /></td>
       <td><input class="form-control" type='text' name='description' placeholder='description' /></td>
       <td><input class="form-control" type='text' name='referent' placeholder='Référent' required /></td>
-      <td><input class="form-control" type='checkbox' name='archive' value='1' /></td>
+      <td><input class="form-control" type='checkbox' name='archive' value='1' checked required /></td>
       <td class='text-right'><button class='btn btn-success' type='submit'><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
     </form>
   </tr>
@@ -24,9 +24,14 @@
     <td>{{ action.Description }}</td>
     <td>{{ action.Referent }}</td>
     <td class='text-center'>
-      <a class='btn btn-xs btn-primary' href='?view=admin&action=switchAction&code={{ code }}'>
-        {% if action.Visible == 1 %}<span class="glyphicon glyphicon-eye-open" aria-hidden="true">
-        {% else %}<span class="glyphicon glyphicon-eye-close" aria-hidden="true">
+        {% if action.Visible == 1 %}
+          <a class='btn btn-xs btn-success' href='?view=admin&action=switchAction&code={{ code }}'>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true">
+          </a>
+        {% else %}
+          <a class='btn btn-xs btn-warning' href='?view=admin&action=switchAction&code={{ code }}'>
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true">
+          </a>
         {% endif %}
       </a>
     </td>
