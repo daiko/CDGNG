@@ -1,18 +1,22 @@
 <?php
 namespace CDGNG\Views;
 
-class CsvView extends InterfaceView
+abstract class CsvView extends InterfaceView
 {
-    public function __construct($filename, $csv)
+    protected $csv;
+    protected $filename = "noname.csv";
+
+    public function __construct($post, $get, $model)
     {
-        $this->csv = $csv;
-        $this->filename = $filename;
+        parent::__construct($post, $get, $model);
+        $this->csv = new \CDGNG\Csv();
     }
 
     public function show()
     {
+        $this->getData();
         header("Content-type: text/CSV");
-        header("Content-disposition: attachment; filename='$this->filename'");
+        header("Content-disposition: attachment; filename=$this->filename");
         $this->csv->print();
     }
 }

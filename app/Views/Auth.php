@@ -8,6 +8,11 @@ class Auth extends TwigView
         return 'auth.twig';
     }
 
+    public function checkParameters()
+    {
+        // Rien.
+    }
+
     protected function getData()
     {
         $messages = new \CDGNG\Messages();
