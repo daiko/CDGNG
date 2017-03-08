@@ -8,6 +8,11 @@ class Main extends TwigView
         return 'main.twig';
     }
 
+    public function checkParameters()
+    {
+        // Rien.
+    }
+
     protected function getData()
     {
         $messages = new \CDGNG\Messages();

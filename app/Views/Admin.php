@@ -8,6 +8,13 @@ class Admin extends TwigView
         return 'admin.twig';
     }
 
+    public function checkParameters()
+    {
+        if (!$this->model->users->isAdmin()) {
+            throw new \Exception("Accès interdit.", 1);
+        }
+    }
+
     protected function getData()
     {
         $messages = new \CDGNG\Messages();
