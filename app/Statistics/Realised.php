@@ -23,6 +23,7 @@ class Realised extends Day
         }
         $this->dtstart = mktime(0, 0, 0, 9, 1, $this->year);
         $this->dtend = mktime(23, 59,59, 8, 31, $this->year + 1);
+        $this->codes = array('Tous');
     }
 
     public function exportAsCsv()
