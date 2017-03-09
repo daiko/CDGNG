@@ -7,6 +7,8 @@ class Realised extends Day
 {
     private $year;
 
+    public $export = "realised";
+
     private $dayName = array(
         'Mon' => 'L', 'Tue' => 'M', 'Wed' => 'M', 'Thu' => 'J',
         'Fri' => 'V', 'Sat' => 'S', 'Sun' => 'D',

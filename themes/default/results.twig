@@ -15,9 +15,14 @@
     <form method="post" action="index.php?view=csvStatistics" class="navbar-form navbar-left">
       <select name="ics[]" multiple="multiple" class="hidden">
         {% for calendar in statistics.calendars %}
-        <option selected name="ics" value="{{ calendar.calendar.name }}">{{ calendar.calendar.name }}</option>
+        <option selected value="{{ calendar.calendar.name }}">{{ calendar.calendar.name }}</option>
         {% endfor %}
-        </select>
+      </select>
+      <select name="codes[]" multiple="multiple" class="hidden">
+        {% for code in codes %}
+        <option selected value="{{ code }}">{{ code }}</option>
+        {% endfor %}
+      </select>
       <input name="export" class="hidden" value="{{ statistics.export }}" / >
       <input name="startDate" class ="hidden" value="{{ statistics.dtstart|date("d-m-Y") }}" />
       <input name="endDate" class="hidden" value="{{ statistics.end|date("d-m-Y") }}" />

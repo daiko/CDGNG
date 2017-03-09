@@ -5,27 +5,31 @@ use CDGNG\Csv;
 
 abstract class Statistic
 {
+    public $export = "All";
+
     public $length = 0;
     public $title = "";
 
     public $dtstart;
     public $dtend;
+    public $codes;
 
     public $calendars = array();
 
     abstract protected function getData($calendar);
     abstract protected function getSlotName();
 
-    public function __construct($dtstart, $dtend)
+    public function __construct($dtstart, $dtend, $codes)
     {
         $this->dtstart = $dtstart;
         $this->dtend = $dtend;
+        $this->codes = $codes;
     }
 
     public function add($calendar)
     {
         $this->extendTitle($calendar->name);
-        $calendar->parse($this->dtstart, $this->dtend);
+        $calendar->parse($this->dtstart, $this->dtend, $this->codes);
         $this->calendars[$calendar->name] = array(
             'calendar' => $calendar,
             'data' => $this->getData($calendar),

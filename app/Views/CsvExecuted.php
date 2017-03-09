@@ -22,10 +22,6 @@ class CsvExecuted extends CsvView
 
     public function checkParameters()
     {
-        $this->post['codes'] = array('Tous');
-
-        // Todo rendre ça inutile
-        $_POST['codes'] = array('Tous');
         if (!isset($this->post["ics"])) {
             throw new \Exception("Aucun calendrier n'a été sélectionné", 1);
         }

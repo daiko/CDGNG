@@ -3,6 +3,8 @@ namespace CDGNG\Statistics;
 
 class Week extends Statistic
 {
+    public $export = "week";
+
     protected function getData($calendar)
     {
         return $calendar->getData('week');

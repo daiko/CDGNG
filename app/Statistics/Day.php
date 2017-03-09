@@ -3,6 +3,8 @@ namespace CDGNG\Statistics;
 
 class Day extends Statistic
 {
+    public $export = "day";
+
     protected function getData($calendar)
     {
         return $calendar->getData('day');

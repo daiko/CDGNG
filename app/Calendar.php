@@ -36,7 +36,7 @@ class Calendar
      * @param timestamp $tsEnd time slot end
      */
 
-    public function parse($tsStart, $tsEnd)
+    public function parse($tsStart, $tsEnd, $selectedCodes)
     {
         $calendar = new Parser\Calendar($this->path);
         $calendar->parse();
@@ -52,7 +52,10 @@ class Calendar
                 and !$event->isFullDay()) {
 
                 if ($event->isValid($tabEvents, $this->actions, $this->modes, $error)) {
-                    if ($event->isSelected()) {
+
+                    if (in_array('Tous', $selectedCodes)
+                        or in_array($event->getCode()['act'], $selectedCodes)
+                    ) {
                         array_push($tabEvents, $event);
                         $this->addEvent($event);
                     }

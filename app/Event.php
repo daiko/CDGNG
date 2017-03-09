@@ -74,25 +74,6 @@ class Event
 		}
 	}
 
-
-	/**
-	 * check if event action code is in selection
-	 *
-	 * @return true or false.
-	 */
-	function isSelected()
-	{
-		if(in_array('Tous', $_POST['codes']))
-			return True;
-
-		$code = $this->getCode()['act'];
-
-		if(in_array($code, $_POST['codes']))
-			return True;
-
-		return false;
-	}
-
 	/**
 	 * check if this is a full day event
 	 *

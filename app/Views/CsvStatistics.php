@@ -19,6 +19,7 @@ class CsvStatistics extends CsvView
         if (!isset($this->post['startDate'])
             or !isset($this->post['endDate'])
             or !isset($this->post['export'])
+            or !isset($this->post['codes'])
         ) {
             throw new \Exception("Paramètre(s) manquant(s)", 1);
         }
@@ -34,19 +35,19 @@ class CsvStatistics extends CsvView
 
         switch($this->post["export"]) {
             case "day":
-                $stat = new \CDGNG\Statistics\Day($dtstart, $dtend);
+                $stat = new \CDGNG\Statistics\Day($dtstart, $dtend, $this->post['codes']);
                 break;
             case "week":
-                $stat = new \CDGNG\Statistics\Week($dtstart, $dtend);
+                $stat = new \CDGNG\Statistics\Week($dtstart, $dtend, $this->post['codes']);
                 break;
             case "month":
-                $stat = new \CDGNG\Statistics\Month($dtstart, $dtend);
+                $stat = new \CDGNG\Statistics\Month($dtstart, $dtend, $this->post['codes']);
                 break;
             case "year":
-                $stat = new \CDGNG\Statistics\Year($dtstart, $dtend);
+                $stat = new \CDGNG\Statistics\Year($dtstart, $dtend, $this->post['codes']);
                 break;
             default:
-                $stat = new \CDGNG\Statistics\All($dtstart, $dtend);
+                $stat = new \CDGNG\Statistics\All($dtstart, $dtend, $this->post['codes']);
                 break;
         }
         foreach ($this->post["ics"] as $calName) {
