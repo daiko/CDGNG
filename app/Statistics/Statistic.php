@@ -40,7 +40,16 @@ abstract class Statistic
     public function exportAsCsv()
     {
         $csv = new Csv();
-        $csv->insert(array('Nom', $this->getSlotName(), 'Actions', 'Modalités', 'Temps(Min)'));
+        $csv->insert(
+            array(
+                'Nom',
+                $this->getSlotName(),
+                'Actions',
+                'Modalités',
+                'Temps(Min)'
+            )
+        );
+
         foreach ($this->calendars as $calName => $calendar) {
             foreach ($calendar['data'] as $slotName => $slot) {
                 if ($slotName === 'duration') {
@@ -54,7 +63,15 @@ abstract class Statistic
                         if ($modeName === 'duration') {
                             continue;
                         }
-                        $csv->insert(array($calName, $slotName, $actionName, $modeName, $mode));
+                        $csv->insert(
+                            array(
+                                $calName,
+                                $slotName,
+                                $actionName,
+                                $modeName,
+                                round($mode / 60, 2)
+                            )
+                        );
                     }
                 }
             }
