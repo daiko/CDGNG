@@ -28,7 +28,13 @@ class Calendar
             throw new \Exception("Can't open file '$this->filename'", 1);
         }
 
-        $lines = array_map('trim', $lines);
+        $lines = array_map(
+            // Supprime tous les caractères invisibles sauf l'espace.
+            function ($line) {
+                return trim($line, "\t\n\r\0\x0B");
+            },
+            $lines
+        );
 
         foreach ($lines as $line) {
             switch ($line) {
