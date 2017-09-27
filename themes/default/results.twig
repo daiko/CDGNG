@@ -55,17 +55,17 @@
       <div class="row">
         <div class="span6 well">
         {% for calendar in statistics.calendars %}
-          <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ calendar.calendar.length/3600|round }}h)</h2>
+          <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
           {% for slotName,slot in calendar.data %}
             {% if slotName != 'duration' %}
-            <h3>{{ slotName }} ({{ slot.duration/3600|round }}h)</h3>
+            <h3>{{ slotName }} ({{ (slot.duration/3600)|round(2) }}h)</h3>
               {% for actionName,action in slot.actions %}
                 {% if actionName != 'duration' %}
-                  {{ actionName }} : {{ actions[actionName]['Intitulé'] }} ({{ action.duration/3600|round }}h)
+                  {{ actionName }} : {{ actions[actionName]['Intitulé'] }} ({{ (action.duration/3600)|round(2) }}h)
                   <ul>
                     {% for modeName,modeLength in action %}
                       {% if modeName != 'duration' %}
-                      <li> {{ modeName }} : {{ modes[modeName]['Intitulé'] }} ({{ modeLength/3600|round }}h)</li>
+                      <li> {{ modeName }} : {{ modes[modeName]['Intitulé'] }} ({{ (modeLength/3600)|round(2) }}h)</li>
                       {% endif %}
                     {% endfor %}
                   </ul>
@@ -82,17 +82,17 @@
       <div class="row">
         <div class="span6 well">
           {% for calendar in statistics.calendars %}
-            <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ calendar.calendar.length/3600|round }}h)</h2>
+            <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
             {% for slotName,slot in calendar.data %}
               {% if slotName != 'duration' %}
-              <h3>{{ slotName }} ({{ slot.duration/3600|round }}h)</h3>
+              <h3>{{ slotName }} ({{ (slot.duration/3600)|round(2) }}h)</h3>
                 {% for modeName,mode in slot.modes %}
                   {% if modeName != 'duration' %}
-                    {{ modeName }} : {{ modes[modeName]['Intitulé'] }} ({{ mode.duration/3600|round }}h)
+                    {{ modeName }} : {{ modes[modeName]['Intitulé'] }} ({{ (mode.duration/3600)|round(2) }}h)
                     <ul>
                       {% for actionName,actionLength in mode %}
                         {% if actionName != 'duration' %}
-                        <li> {{ actionName }} : {{ actions[actionName]['Intitulé'] }} ({{ actionLength/3600|round }}h)</li>
+                        <li> {{ actionName }} : {{ actions[actionName]['Intitulé'] }} ({{ (actionLength/3600)|round(2) }}h)</li>
                         {% endif %}
                       {% endfor %}
                     </ul>
