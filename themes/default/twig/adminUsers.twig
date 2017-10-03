@@ -5,7 +5,7 @@
     <th class='col-md-1'></th>
   </tr>
   <tr>
-    <form action="?view=admin&action=addUser" method="post">
+    <form action="?view=adminUsers&action=addUser" method="post">
       <td><input type='text' name='login' pattern='[A-Za-z]+' placeholder='Identifiant' required /></td>
       <td><input type='password' name='password1' placeholder='Mot de passe' required />
       <input type='password' name='password2' placeholder='Vérification MdP' /></td>
@@ -18,7 +18,7 @@
       <td><b>{{ user.login }}</b></td>
       <td></td>
       <td class='text-right'>
-        <a class='btn btn-xs btn-danger' href="?view=admin&action=delUser&login={{ user.login }}">
+        <a class='btn btn-xs btn-danger' href="?view=adminUsers&action=delUser&login={{ user.login }}">
           <span class="glyphicon glyphicon-trash" aria-hidden="true">
         </a>
       </td>

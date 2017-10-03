@@ -6,7 +6,7 @@
     <th class='col-md-1'></th>
   </tr>
   <tr>
-    <form action="?view=admin&action=addMode" method="post">
+    <form action="?view=adminModes&action=addMode" method="post">
       <td><input class="form-control" type='text' name='code' pattern='[A-Za-z]' size='1' placeholder='Code' required /></td>
       <td><input class="form-control" type='text' name='title' placeholder='Intitulé' required /></td>
       <td><input class="form-control" type='text' name='description' placeholder='description' /></td>
@@ -19,7 +19,7 @@
     <td>{{ mode.Intitulé }}</td>
     <td>{{ mode.Description }}</td>
     <td class='text-right'>
-      <a class='btn btn-xs btn-danger' href="?view=admin&action=delMode&code={{ code }}">
+      <a class='btn btn-xs btn-danger' href="?view=adminModes&action=delMode&code={{ code }}">
         <span class="glyphicon glyphicon-trash" aria-hidden="true">
       </a>
     </td>

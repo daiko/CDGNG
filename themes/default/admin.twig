@@ -7,10 +7,18 @@
     </div>
 
     <ul class="nav navbar-nav center-block">
-      <li class="active"><a href="#actions" data-toggle="tab">Actions</a></li>
-      <li><a href="#modes" data-toggle="tab">Modalités</a></li>
-      <li><a href="#calendars" data-toggle="tab">Calendriers</a></li>
-      <li><a href="#users" data-toggle="tab">Utilisateurs</a></li>
+      <li {% if active == "actions" %} class="active"{% endif %}>
+        <a href="?view=adminActions">Actions</a>
+      </li>
+      <li {% if active == "modes" %} class="active"{% endif %}>
+        <a href="?view=adminModes">Modalités</a>
+      </li>
+      <li {% if active == "calendars" %} class="active"{% endif %}>
+        <a href="?view=adminCalendars">Calendriers</a>
+      </li>
+      <li {% if active == "users" %} class="active"{% endif %}>
+        <a href="?view=adminUsers">Utilisateurs</a>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -34,10 +42,15 @@
 
 <div class="container">
   <div class="tab-content">
-    <div class="tab-pane active" id="actions" role="tabpanel">{% include 'twig/adminActions.twig' %}</div>
-    <div class="tab-pane" id="modes" role="tabpanel">{% include 'twig/adminModes.twig' %}</div>
-    <div class="tab-pane" id="calendars" role="tabpanel">{% include 'twig/adminCalendars.twig' %}</div>
-    <div class="tab-pane" id="users" role="tabpanel">{% include 'twig/adminUsers.twig' %}</div>
+    {% if active == "actions" %}
+      {% include 'twig/adminActions.twig' %}
+    {% elseif active == "modes" %}
+      {% include 'twig/adminModes.twig' %}
+    {% elseif active == "calendars" %}
+      {% include 'twig/adminCalendars.twig' %}
+    {% elseif active == "users" %}
+      {% include 'twig/adminUsers.twig' %}
+    {% endif %}
   </div>
 </div>
 

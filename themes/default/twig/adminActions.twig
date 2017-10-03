@@ -8,7 +8,7 @@
     <th class='col-md-1'></th>
   </tr>
   <tr>
-    <form action="?view=admin&action=addAction" method="post">
+    <form action="?view=adminActions&action=addAction" method="post">
       <td><input class="form-control" type='text' name='code' patern='[0-9][0-9][0-9]' placeholder='Code' maxlength='3' minlength='1' required /></td>
       <td><input class="form-control" type='text' name='title' placeholder='Intitulé' required /></td>
       <td><input class="form-control" type='text' name='description' placeholder='description' /></td>
@@ -25,18 +25,18 @@
     <td>{{ action.Referent }}</td>
     <td class='text-center'>
         {% if action.Visible == 1 %}
-          <a class='btn btn-xs btn-success' href='?view=admin&action=switchAction&code={{ code }}'>
+          <a class='btn btn-xs btn-success' href='?view=adminActions&action=switchAction&code={{ code }}'>
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true">
           </a>
         {% else %}
-          <a class='btn btn-xs btn-warning' href='?view=admin&action=switchAction&code={{ code }}'>
+          <a class='btn btn-xs btn-warning' href='?view=adminActions&action=switchAction&code={{ code }}'>
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true">
           </a>
         {% endif %}
       </a>
     </td>
     <td class='text-right'>
-      <a class='btn btn-xs btn-danger' href='?view=admin&action=delAction&code={{ code }}'>
+      <a class='btn btn-xs btn-danger' href='?view=adminActions&action=delAction&code={{ code }}'>
         <span class="glyphicon glyphicon-trash" aria-hidden="true">
       </a>
     </td>

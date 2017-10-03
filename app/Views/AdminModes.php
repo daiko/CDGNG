@@ -1,7 +1,7 @@
 <?php
 namespace CDGNG\Views;
 
-class Admin extends TwigView
+class AdminModes extends TwigView
 {
     protected function getTemplateFilename()
     {
@@ -21,10 +21,8 @@ class Admin extends TwigView
 
         return array(
             'pageTitle' => "CDG : Administration",
-            'calendars' => $this->model->calendars,
-            'actions' => $this->model->actions,
+            'active' => "modes",
             'modes' => $this->model->modes,
-            'users' => $this->model->users,
             'connectedUser' => $this->model->users->connected,
             'messages' => $messages->getAll(),
         );

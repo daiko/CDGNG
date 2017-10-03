@@ -5,7 +5,7 @@
     <th class='col-md-1'></th>
   </tr>
   <tr>
-    <form action="?view=admin&action=addCalendar" method="post">
+    <form action="?view=adminCalendars&action=addCalendar" method="post">
     <td><input type='text' pattern='[A-Za-z]+' name='name' placeholder='Nom calendrier' required /></td>
     <td><input type='url' name='url' placeholder='Url calendrier' class="form-control" required /></td>
     <td class='text-right'><button class='btn btn-success' type='submit'><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
@@ -16,7 +16,7 @@
     <td><b>{{ calName }}</b></td>
     <td>{{ calendar.url }}</td>
     <td class='text-right'>
-      <a class='btn btn-xs btn-danger' href='?view=admin&action=delCalendar&name={{ calName }}'>
+      <a class='btn btn-xs btn-danger' href='?view=adminCalendars&action=delCalendar&name={{ calName }}'>
         <span class="glyphicon glyphicon-trash" aria-hidden="true">
       </a>
     </td>
