@@ -32,7 +32,9 @@ class Controller
         }
 
         // Tente d'afficher l'interface d'administration sans être connecté.
-        if ($get['view'] === 'admin' and !$this->model->users->isAdmin()) {
+        if (substr($get['view'], 0, 5) === 'admin'
+            and !$this->model->users->isAdmin()
+        ) {
             $get['view'] = 'auth';
         }
 

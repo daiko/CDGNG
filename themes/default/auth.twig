@@ -12,7 +12,7 @@
           <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="?view=admin">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
+          <li><a href="?view=adminActions">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
           {% if connectedUser %}
           <li role="separator" class="divider"></li>
           <li><a href='?action=logout'>Déconnecter ({{ connectedUser.login }})</a></li>
@@ -25,7 +25,7 @@
 {% include 'twig/messages.twig' %}
 <div class="container">
   <div class="center-block well">
-    <form action="?view=admin&action=login" method="post">
+    <form action="?view=adminActions&action=login" method="post">
       <div class='form-group row'>
         <input id='login' type='text' name='login' placeholder='Identifiant' required />
       </div>

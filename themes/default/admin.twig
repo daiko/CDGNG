@@ -27,7 +27,7 @@
           <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="?view=admin">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
+          <li><a href="?view=adminActions">{% if not connectedUser %}<span class="glyphicon glyphicon-lock" aria-hidden="true"> {% endif %}Paramètres</a></li>
           {% if connectedUser %}
           <li role="separator" class="divider"></li>
           <li><a href='?action=logout'>Déconnecter ({{ connectedUser.login }})</a></li>
