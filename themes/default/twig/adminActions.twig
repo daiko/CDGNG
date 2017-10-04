@@ -20,9 +20,9 @@
   {% for code,action in actions %}
   <tr>
     <td>{{ code }}</td>
-    <td>{{ action.Intitulé }}</td>
-    <td>{{ action.Description }}</td>
-    <td>{{ action.Referent }}</td>
+    <td>{{ action.Intitulé|raw }}</td>
+    <td>{{ action.Description|raw }}</td>
+    <td>{{ action.Referent|raw }}</td>
     <td class='text-center'>
         {% if action.Visible == 1 %}
           <a class='btn btn-xs btn-success' href='?view=adminActions&action=switchAction&code={{ code }}'>

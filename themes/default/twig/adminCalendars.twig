@@ -13,7 +13,7 @@
   </form>
 {% for calName,calendar in calendars %}
   <tr>
-    <td><b>{{ calName }}</b></td>
+    <td><b>{{ calName|raw }}</b></td>
     <td>{{ calendar.url }}</td>
     <td class='text-right'>
       <a class='btn btn-xs btn-danger' href='?view=adminCalendars&action=delCalendar&name={{ calName }}'>

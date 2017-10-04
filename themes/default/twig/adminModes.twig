@@ -16,8 +16,8 @@
 {% for code,mode in modes %}
   <tr>
     <td>{{ code }}</td>
-    <td>{{ mode.Intitulé }}</td>
-    <td>{{ mode.Description }}</td>
+    <td>{{ mode.Intitulé|raw }}</td>
+    <td>{{ mode.Description|raw }}</td>
     <td class='text-right'>
       <a class='btn btn-xs btn-danger' href="?view=adminModes&action=delMode&code={{ code }}">
         <span class="glyphicon glyphicon-trash" aria-hidden="true">
