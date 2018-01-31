@@ -28,6 +28,7 @@ class AddAction extends AdminAction
         if (!isset($this->post['archive'])) {
             $this->post['archive'] = 0;
         }
+        $this->post['archive'] = intval($this->post['archive']);
 
         if (preg_match('/^[0-9]{1,3}$/', $this->post['code']) !== 1) {
             throw new \Exception("Code action mal formatté.", 1);
