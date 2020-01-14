@@ -55,7 +55,7 @@
       <div class="row">
         <div class="span6 well">
         {% for calendar in statistics.calendars %}
-          <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
+          <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.dtend|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
           {% for slotName,slot in calendar.data %}
             {% if slotName != 'duration' %}
             <h3>{{ slotName }} ({{ (slot.duration/3600)|round(2) }}h)</h3>
@@ -82,7 +82,7 @@
       <div class="row">
         <div class="span6 well">
           {% for calendar in statistics.calendars %}
-            <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.end|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
+            <h2>{{ calendar.calendar.name}} du {{ statistics.dtstart|date("d-m-Y") }} au {{ statistics.dtend|date("d-m-Y") }} ({{ (calendar.calendar.length/3600)|round(2) }}h)</h2>
             {% for slotName,slot in calendar.data %}
               {% if slotName != 'duration' %}
               <h3>{{ slotName }} ({{ (slot.duration/3600)|round(2) }}h)</h3>
